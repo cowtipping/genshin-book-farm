@@ -1,0 +1,56 @@
+:root {
+    --dark: #0B2027;
+    --light: #F1E3E4;
+    --bright: #FF41DC;
+    --action: #59CD90;
+    --neutral: #FF7F11;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    background-color: var(--dark);
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+}
+
+h1 {
+    color: var(--bright);
+    font-size: 3rem;
+}
+
+p {
+    color: var(--light);
+    font-size: 1.2rem;
+}
+
+header p {
+    font-size: 2rem;
+}
+
+header span {
+    text-transform: uppercase;
+}
+
+.domain span {
+    text-transform: uppercase;
+    font-size: 1.8rem;
+}
+
+.characters img {
+    border-radius: 25%;
+    width: 200px;
+    height: 200px;
+}
+
+.char p::first-letter {
+    text-transform: capitalize;
+}
+
+.char p {
+    font-weight: bold;
+}
