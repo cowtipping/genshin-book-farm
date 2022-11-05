@@ -3,10 +3,10 @@ const TOTAL_DOMAINS = 4;
 
 let dayOfTheWeek = new Date().toLocaleDateString('en-us', {weekday:"long"});
 document.querySelector(".day").textContent = dayOfTheWeek;
-console.log(dayOfTheWeek)
 
 //TODO:
 // Factor in server reset time at 3am
+// Move this whole thing to a db
 
 // ******* Mon/Thu *******
 
@@ -110,9 +110,6 @@ const praxis = {
     day: ["Wednesday", "Saturday"]
 }
 
-// ******* Sun *******
-// TODO: Make some garbage page for Sundays
-
 const charactersSection = document.querySelector(".characters");
 
 // Create divs for each domain section
@@ -127,17 +124,21 @@ for (let i = 0; i < TOTAL_DOMAINS; i++) {
 function showCharacters(talentBook, section) {
     for (i = 0; i < talentBook.character.length; i++) {
         let sec = document.querySelector(section);
+        let figure = document.createElement("figure");
+        sec.appendChild(figure);
         let img = document.createElement("img");
         img.src = imgPath + talentBook.image[i];
         img.alt = talentBook.character[i];
-        sec.appendChild(img);
+        figure.appendChild(img);
+        let caption = document.createElement("figcaption");
+        figure.appendChild(caption).textContent = talentBook.character[i];
     }
 }
 
 function showDomainInfo(talentBook, section) {
     let sec = document.querySelector(section);
     let p = document.createElement("p");
-    p.textContent = `${talentBook.book} books are available at ${talentBook.domain}`;
+    p.textContent = `${talentBook.book} @ ${talentBook.domain}`;
     sec.appendChild(p);
 }
 
@@ -173,4 +174,14 @@ if (dayOfTheWeek === "Wednesday" || dayOfTheWeek === "Saturday") {
     showCharacters(light, ".sec2");
     showDomainInfo(praxis, ".sec3");
     showCharacters(praxis, ".sec3");
+}
+
+if (dayOfTheWeek === "Sunday") {
+    let sec = document.querySelector(".sec0");
+    let p = document.createElement("p");
+    p.classList.add("sunday");
+    sec.appendChild(p).textContent = "All of them! 👀";
+    img = document.createElement("img");
+    img.src = imgPath + "bennett-assemble.gif";
+    sec.appendChild(img);
 }

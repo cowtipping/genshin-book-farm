@@ -4,9 +4,13 @@
     --bright: #FF41DC;
     --action: #59CD90;
     --neutral: #FF7F11;
+    --picSize: 180px;
+    --lightrgb: rgba(241, 227, 228, 0.1);
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+* {
+    box-sizing: border-box;
+}
 
 body {
     background-color: var(--dark);
@@ -14,7 +18,7 @@ body {
 }
 
 .container {
-    width: 80%;
+    max-width: 80%;
     margin: auto;
 }
 
@@ -41,10 +45,54 @@ header span {
     font-size: 1.8rem;
 }
 
-.characters img {
+.characters {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.char {
+    display: flex;
+    flex-direction: row; 
+    flex-wrap: wrap;
+    /* justify-content: center; */
+}
+
+/* Make flex nonsense ignore the <p> */
+.char > p {
+    flex-basis: 100%;
+}
+
+/* Force last section onto new line (cos it's shorter and tries to wrap) */
+.sec3 {
+    flex-basis: 100%;
+}
+
+figure {
+    padding: 5px;
+    margin: 10px;
+    /* display: flex;
+    flex-flow: column; */
+}
+
+figure img {
     border-radius: 25%;
-    width: 200px;
-    height: 200px;
+    max-width: var(--picSize);
+    height: auto;
+}
+
+figcaption {
+    border: 2px solid var(--light);
+    background-color: var(--neutral);
+    border-radius: 5px;
+    padding: 4px;
+    text-align: center;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1.8rem;
+    font-family: 'Baloo 2';
+    max-width: var(--picSize);
+    text-shadow:1px 0 0 var(--light),0 1px 0 var(--light),-1px 0 0 var(--light),0 -1px 0 var(--light);
 }
 
 .char p::first-letter {
@@ -53,4 +101,37 @@ header span {
 
 .char p {
     font-weight: bold;
+    color: var(--action);
+}
+
+.day {
+    color: var(--action);
+}
+
+.sunday {
+    font-size: 5rem;
+}
+
+footer {
+    background: var(--lightrgb);
+    text-align: center;
+    padding: 4px;
+    margin: 20px 0 0 0;
+    /* position: absolute;
+    bottom: 0; */
+}
+
+footer p {
+    font-size: 0.9rem;
+    color: var(--action);
+}
+
+footer a:link,
+footer a:visited {
+    color: var(--light);
+}
+
+footer a:hover,
+footer a:active {
+    color: var(--bright);
 }
