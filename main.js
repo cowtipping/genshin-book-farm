@@ -4,7 +4,7 @@ const TOTAL_DOMAINS = 4;
 let dayOfTheWeek = new Date().toLocaleDateString('en-us', {weekday:"long"});
 document.querySelector(".day").textContent = dayOfTheWeek;
 
-let dayPicker = document.querySelectorAll("li");
+/* let dayPicker = document.querySelectorAll("li"); */
 
 /* dayPicker.forEach(item => {
 	item.addEventListener('click', (e)=> {
@@ -79,8 +79,8 @@ const elegance = {
 }
 
 const ingenuity = {
-    character: ["Dori"], // add "Nahida" when in-game portrait available
-    image: ["dori.webp"],
+    character: ["Dori", "Nahida"],
+    image: ["dori.webp", "nahida.webp"],
     domain: "Steeple Of Ignorance",
     book: "ingenuity",
     day: ["Tuesday", "Friday"]
