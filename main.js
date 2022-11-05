@@ -4,9 +4,19 @@ const TOTAL_DOMAINS = 4;
 let dayOfTheWeek = new Date().toLocaleDateString('en-us', {weekday:"long"});
 document.querySelector(".day").textContent = dayOfTheWeek;
 
+let dayPicker = document.querySelectorAll("li");
+
+/* dayPicker.forEach(item => {
+	item.addEventListener('click', (e)=> {
+		console.log(e.target.textContent);
+        dayOfTheWeek = e.target.textContent;
+	})
+}) */
+
 //TODO:
 // Factor in server reset time at 3am
 // Move this whole thing to a db
+// Allow user to select day
 
 // ******* Mon/Thu *******
 
