@@ -4,19 +4,21 @@ const TOTAL_DOMAINS = 4;
 let dayOfTheWeek = new Date().toLocaleDateString('en-us', {weekday:"long"});
 document.querySelector(".day").textContent = dayOfTheWeek;
 
-/* let dayPicker = document.querySelectorAll("li"); */
-
-/* dayPicker.forEach(item => {
+let dayPicker = document.querySelectorAll("li");
+dayPicker.forEach(item => {
 	item.addEventListener('click', (e)=> {
 		console.log(e.target.textContent);
         dayOfTheWeek = e.target.textContent;
+        document.querySelector(".day").textContent = dayOfTheWeek;
+        clearSections()
+        renderSections()
+        checkDay(dayOfTheWeek);
 	})
-}) */
+})
 
 //TODO:
 // Factor in server reset time at 3am
 // Move this whole thing to a db
-// Allow user to select day
 
 // ******* Mon/Thu *******
 
@@ -120,14 +122,69 @@ const praxis = {
     day: ["Wednesday", "Saturday"]
 }
 
-const charactersSection = document.querySelector(".characters");
-
 // Create divs for each domain section
-for (let i = 0; i < TOTAL_DOMAINS; i++) {
-    let div = document.createElement("div");
-    div.classList.add("char");
-    div.classList.add(`sec${i}`);
-    charactersSection.appendChild(div);
+function renderSections() {
+    const charactersSection = document.querySelector(".characters");
+    for (let i = 0; i < TOTAL_DOMAINS; i++) {
+        let div = document.createElement("div");
+        div.classList.add("char");
+        div.classList.add(`sec${i}`);
+        charactersSection.appendChild(div);
+    }
+}
+
+function clearSections() {
+    /* const charactersSection = document.querySelector(".characters"); */
+    for (let i = 0; i < TOTAL_DOMAINS; i++) {
+        let div = document.querySelector("div .char")
+        div.remove();
+    }
+}
+
+// Check what day it is and loop through characters for each talent book
+function checkDay(dayOfTheWeek) {
+    if (dayOfTheWeek === "Monday" || dayOfTheWeek === "Thursday") {
+        showDomainInfo(freedom, ".sec0");
+        showCharacters(freedom, ".sec0");
+        showDomainInfo(prosperity, ".sec1");
+        showCharacters(prosperity, ".sec1");
+        showDomainInfo(transience, ".sec2");
+        showCharacters(transience, ".sec2");
+        showDomainInfo(admonition, ".sec3");
+        showCharacters(admonition, ".sec3");
+    }
+
+    if (dayOfTheWeek === "Tuesday" || dayOfTheWeek === "Friday") {
+        showDomainInfo(resistance, ".sec0");
+        showCharacters(resistance, ".sec0");
+        showDomainInfo(diligence, ".sec1");
+        showCharacters(diligence, ".sec1");
+        showDomainInfo(elegance, ".sec2");
+        showCharacters(elegance, ".sec2");
+        showDomainInfo(ingenuity, ".sec3");
+        showCharacters(ingenuity, ".sec3");
+    }
+
+    if (dayOfTheWeek === "Wednesday" || dayOfTheWeek === "Saturday") {
+        showDomainInfo(ballad, ".sec0");
+        showCharacters(ballad, ".sec0");
+        showDomainInfo(gold, ".sec1");
+        showCharacters(gold, ".sec1");
+        showDomainInfo(light, ".sec2");
+        showCharacters(light, ".sec2");
+        showDomainInfo(praxis, ".sec3");
+        showCharacters(praxis, ".sec3");
+    }
+
+    if (dayOfTheWeek === "Sunday") {
+        let sec = document.querySelector(".sec0");
+        let p = document.createElement("p");
+        p.classList.add("sunday");
+        sec.appendChild(p).textContent = "All of them! 👀";
+        img = document.createElement("img");
+        img.src = imgPath + "bennett-assemble.gif";
+        sec.appendChild(img);
+    }
 }
 
 // Take talent book name and section (created above) as arguments, and create character images in that section
@@ -145,6 +202,7 @@ function showCharacters(talentBook, section) {
     }
 }
 
+// Show book and domain info
 function showDomainInfo(talentBook, section) {
     let sec = document.querySelector(section);
     let p = document.createElement("p");
@@ -152,46 +210,5 @@ function showDomainInfo(talentBook, section) {
     sec.appendChild(p);
 }
 
-// Check what day it is and loop through characters for each talent book
-if (dayOfTheWeek === "Monday" || dayOfTheWeek === "Thursday") {
-    showDomainInfo(freedom, ".sec0");
-    showCharacters(freedom, ".sec0");
-    showDomainInfo(prosperity, ".sec1");
-    showCharacters(prosperity, ".sec1");
-    showDomainInfo(transience, ".sec2");
-    showCharacters(transience, ".sec2");
-    showDomainInfo(admonition, ".sec3");
-    showCharacters(admonition, ".sec3");
-}
-
-if (dayOfTheWeek === "Tuesday" || dayOfTheWeek === "Friday") {
-    showDomainInfo(resistance, ".sec0");
-    showCharacters(resistance, ".sec0");
-    showDomainInfo(diligence, ".sec1");
-    showCharacters(diligence, ".sec1");
-    showDomainInfo(elegance, ".sec2");
-    showCharacters(elegance, ".sec2");
-    showDomainInfo(ingenuity, ".sec3");
-    showCharacters(ingenuity, ".sec3");
-}
-
-if (dayOfTheWeek === "Wednesday" || dayOfTheWeek === "Saturday") {
-    showDomainInfo(ballad, ".sec0");
-    showCharacters(ballad, ".sec0");
-    showDomainInfo(gold, ".sec1");
-    showCharacters(gold, ".sec1");
-    showDomainInfo(light, ".sec2");
-    showCharacters(light, ".sec2");
-    showDomainInfo(praxis, ".sec3");
-    showCharacters(praxis, ".sec3");
-}
-
-if (dayOfTheWeek === "Sunday") {
-    let sec = document.querySelector(".sec0");
-    let p = document.createElement("p");
-    p.classList.add("sunday");
-    sec.appendChild(p).textContent = "All of them! 👀";
-    img = document.createElement("img");
-    img.src = imgPath + "bennett-assemble.gif";
-    sec.appendChild(img);
-}
+renderSections();
+checkDay(dayOfTheWeek);
