@@ -81,8 +81,8 @@ const elegance = {
 }
 
 const ingenuity = {
-    character: ["Dori", "Nahida"],
-    image: ["dori.webp", "nahida.webp"],
+    character: ["Dori", "Nahida", "Layla"],
+    image: ["dori.webp", "nahida.webp", "layla.webp"],
     domain: "Steeple Of Ignorance",
     book: "ingenuity",
     day: ["Tuesday", "Friday"]
