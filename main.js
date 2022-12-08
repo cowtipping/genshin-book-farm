@@ -47,8 +47,8 @@ const transience = {
 }
 
 const admonition = {
-    character: ["Candace", "Cyno", "Tighnari", "Traveler"],
-    image: ["candace.webp", "cyno.webp", "tighnari.webp", "aether.webp"],
+    character: ["Candace", "Cyno", "Tighnari", "Traveler", "Faruzan"],
+    image: ["candace.webp", "cyno.webp", "tighnari.webp", "aether.webp", "faruzan.webp"],
     domain: "Steeple Of Ignorance",
     book: "admonition",
     day: ["Monday", "Thursday"]
@@ -115,8 +115,8 @@ const light = {
 }
 
 const praxis = {
-    character: ["Collei", "Nilou", "Traveler"],
-    image: ["collei.webp", "nilou.webp", "aether.webp"],
+    character: ["Collei", "Nilou", "Traveler", "Wanderer"],
+    image: ["collei.webp", "nilou.webp", "aether.webp", "wanderer.webp"],
     domain: "Steeple Of Ignorance",
     book: "praxis",
     day: ["Wednesday", "Saturday"]
